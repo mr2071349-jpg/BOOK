@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BGDG-172: Gender Sensitization Ultimate Exam Prep Portal</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    
+    
+
+    <style>
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-accent: #eef2ff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --primary-dark: #3730a3;
+            --accent: #7c3aed;
+            --accent-light: #a78bfa;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0b0f19;
+            --bg-secondary: #131a26;
+            --bg-accent: #1e1b4b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            --primary: #6366f1;
+            --primary-light: #a5b4fc;
+            --primary-dark: #4338ca;
+            --accent: #8b5cf6;
+            --accent-light: #c084fc;
+            --border-color: #334155;
+            --glass-bg: rgba(19, 26, 38, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --shadow-lg: 0 10px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+        }
+
+        .logo-text h2 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-grow: 1;
+        }
+
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .nav-item a:hover {
+            background-color: var(--bg-accent);
+            color: var(--primary);
+        }
+
+        .nav-item.active a {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+        }
+
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--bg-accent);
+            color: var(--primary);
+        }
+
+        /* Main Content Container */
+        .main-container {
+            margin-left: 280px;
+            flex-grow: 1;
+            padding: 40px;
+            max-width: 1200px;
+            transition: var(--transition);
+        }
+
+        /* Top Header Bar */
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .search-bar {
+            position: relative;
+            width: 320px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 16px 12px 42px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .header-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .exam-badge {
+            background-color: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Page Content Structure */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1.page-title {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        p.page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 32px;
+        }
+
+        /* Grid Cards and Layout Components */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 24px;
+            transition: var(--transition);
+        }
+
+        .glass-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        /* Custom Alert Banner */
+        .alert-banner {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(124, 58, 237, 0.1));
+            border-left: 5px solid var(--accent);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .alert-banner i {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-top: 2px;
+        }
+
+        .alert-content h4 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .alert-content p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Accordion / Collapse style for Questions */
+        .accordion-item {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-secondary);
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .accordion-item:hover {
+            border-color: var(--primary-light);
+        }
+
+        .accordion-header {
+            padding: 20px 24px;
+            background-color: var(--bg-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            transition: var(--transition);
+        }
+
+        .accordion-header h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .accordion-header h3 span {
+            background-color: var(--bg-accent);
+            color: var(--primary);
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: var(--font-body);
+        }
+
+        .accordion-arrow {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .accordion-item.active .accordion-arrow {
+            transform: rotate(180deg);
+            color: var(--primary);
+        }
+
+        .accordion-content {
+            padding: 0 24px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            border-top: 0 solid var(--border-color);
+        }
+
+        .accordion-item.active .accordion-content {
+            padding: 24px;
+            max-height: 5000px; /* High max-height to handle large answers */
+            border-top-width: 1px;
+        }
+
+        /* Bilingual tabs inside content */
+        .lang-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .lang-tab {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 4px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lang-tab.active {
+            background-color: var(--primary);
+            color: #ffffff;
+        }
+
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .answer-rich-box {
+            background-color: var(--bg-accent);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .answer-rich-box h5 {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 6px;
+        }
+
+        .answer-rich-box ul {
+            list-style-type: none;
+            margin-left: 8px;
+        }
+
+        .answer-rich-box li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        .answer-rich-box li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.3rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        .answer-body {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .answer-body p {
+            margin-bottom: 16px;
+        }
+
+        .answer-body b {
+            color: var(--text-primary);
+        }
+
+        /* Flowchart styling & Mermaid Custom Container */
+        .flowchart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 24px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            margin: 20px 0;
+            overflow-x: auto;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+            width: 100%;
+        }
+
+        [data-theme="dark"] .flowchart-container {
+            background-color: #1a2332;
+        }
+
+        .flowchart-desc {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 600px;
+            font-style: italic;
+        }
+
+        /* Self Test Quiz Styling */
+        .quiz-card {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            background-color: var(--bg-secondary);
+            margin-bottom: 20px;
+        }
+
+        .quiz-question {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            background: none;
+            color: var(--text-primary);
+            text-align: left;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quiz-option:hover {
+            background-color: var(--bg-accent);
+            border-color: var(--primary-light);
+        }
+
+        .quiz-option.correct {
+            background-color: rgba(16, 185, 129, 0.15) !important;
+            border-color: var(--success) !important;
+            color: var(--success) !important;
+            font-weight: 600;
+        }
+
+        .quiz-option.incorrect {
+            background-color: rgba(239, 68, 68, 0.15) !important;
+            border-color: var(--danger) !important;
+            color: var(--danger) !important;
+        }
+
+        .quiz-feedback {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        /* Table styles inside cards */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table.styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        table.styled-table th {
+            background-color: var(--bg-accent);
+            color: var(--primary);
+            font-weight: 700;
+            padding: 12px 16px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        table.styled-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        table.styled-table tr:hover {
+            background-color: var(--bg-accent);
+        }
+
+        /* Responsive Mobile Styles */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 70px;
+            }
+            .logo-text, .sidebar-footer span, .nav-item span {
+                display: none;
+            }
+            .sidebar-header {
+                padding: 16px;
+                justify-content: center;
+            }
+            .nav-links {
+                padding: 16px 8px;
+            }
+            .nav-item a {
+                justify-content: center;
+                padding: 12px;
+            }
+            .main-container {
+                margin-left: 70px;
+                padding: 24px;
+            }
+            .top-header {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+            .search-bar {
+                width: 100%;
+            }
+        }
+    </style>
+    <!-- Local Offline Mermaid JS -->
+    <script src="mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: 'default',
+            securityLevel: 'loose',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="logo-text">
+                <h2>BGDG-172</h2>
+                <p>Gender Sensitization Portal</p>
+            </div>
+        </div>
+        
+        <ul class="nav-links">
+            <li class="nav-item active" data-target="strategy">
+                <a href="#strategy"><i class="fa-solid fa-compass"></i><span>🎯 Strategy Hub</span></a>
+            </li>
+            <li class="nav-item" data-target="questions">
+                <a href="#questions"><i class="fa-solid fa-fire-flame-simple"></i><span>🚀 VVIP Big 6</span></a>
+            </li>
+            <li class="nav-item" data-target="revision">
+                <a href="#revision"><i class="fa-solid fa-book-open"></i><span>📚 Revision Deck</span></a>
+            </li>
+            <li class="nav-item" data-target="selftest">
+                <a href="#selftest"><i class="fa-solid fa-circle-check"></i><span>✍️ Self Test Quiz</span></a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="themeBtn" title="Toggle Light/Dark Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <span>AntiGravity AI v1.1</span>
+        </div>
+    </aside>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Search topics, keywords...">
+            </div>
+            <div class="header-meta">
+                <div class="exam-badge">
+                    <i class="fa-solid fa-triangle-exclamation"></i> EXAM: JUNE 2ND
+                </div>
+            </div>
+        </header>
+
+        <!-- PAGE 1: STRATEGY HUB -->
+        <section id="strategy" class="page active">
+            <h1 class="page-title">🎯 Strategy Hub</h1>
+            <p class="page-subtitle">Master Plan to score 80%+ Marks from scratch in 3 Days</p>
+            
+            <div class="alert-banner">
+                <i class="fa-solid fa-circle-info"></i>
+                <div class="alert-content">
+                    <h4>Exam Date: June 2nd, 2026</h4>
+                    <p>Suno, BGDG-172 ek concept-based sociological subject hai. Theoretical rote-learning se zyaada yahan <b>Visual representations (Flowcharts) aur Real-life Indian Examples</b> ka game hai. Niche diye gaye structure ko dhyan se samajhein!</p>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2>📈 Overlap Matrix & Paper Analysis</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 16px;">Suno, last 3 years ke paper aur assignment analyze karke ye matrix banayi hai. In topics ke aane ki probability 100% hai!</p>
+                
+                <div class="table-responsive">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Topic / Unit</th>
+                                <th>June 2023</th>
+                                <th>June 2024</th>
+                                <th>June 2025</th>
+                                <th>Priority</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>1. Masculinities (पुरुषत्व)</b></td>
+                                <td>Q1 (20 M)</td>
+                                <td>Q4 (15 M)</td>
+                                <td>Q1 (20 M)</td>
+                                <td><span style="color: var(--danger); font-weight: bold;">🔥 Super VVIP</span></td>
+                            </tr>
+                            <tr>
+                                <td><b>2. Sex vs Gender & Social Construction</b></td>
+                                <td>Q6, Q7 (40 M)</td>
+                                <td>Q6 (15 M)</td>
+                                <td>Q2 (20 M)</td>
+                                <td><span style="color: var(--danger); font-weight: bold;">🔥 Super VVIP</span></td>
+                            </tr>
+                            <tr>
+                                <td><b>3. Gender Gap in Labour Force & Economy</b></td>
+                                <td>Q2 (20 M)</td>
+                                <td>Q2, Q12 (25 M)</td>
+                                <td>Q4 (20 M)</td>
+                                <td><span style="color: var(--danger); font-weight: bold;">🔥 Super VVIP</span></td>
+                            </tr>
+                            <tr>
+                                <td><b>4. Workplace Sexual Harassment & Violence</b></td>
+                                <td>Q4 (20 M)</td>
+                                <td>Q1, Q3, Q14 (40 M)</td>
+                                <td>Q6 (20 M)</td>
+                                <td><span style="color: var(--danger); font-weight: bold;">🔥 Super VVIP</span></td>
+                            </tr>
+                            <tr>
+                                <td><b>5. Gender and Language (भाषा)</b></td>
+                                <td>Q3 (20 M)</td>
+                                <td>Q5 (15 M)</td>
+                                <td>Q7 (20 M)</td>
+                                <td><span style="color: var(--danger); font-weight: bold;">🔥 Super VVIP</span></td>
+                            </tr>
+                            <tr>
+                                <td><b>6. Gender and Media & Portrayal</b></td>
+                                <td>Q5 (20 M)</td>
+                                <td>Q7, Q9 (25 M)</td>
+                                <td>Q8(a) (5 M)</td>
+                                <td><span style="color: var(--warning); font-weight: bold;">🌟 VIP</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2>🧱 20-Mark Answering Blueprint (500 Words)</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Examiner ko wow karne aur full marks lane ke liye apne long answers ko is pattern mein structure karein:</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+                    <div style="padding: 16px; background-color: var(--bg-accent); border-radius: var(--radius-sm); border-left: 4px solid var(--primary);">
+                        <h4 style="font-family: var(--font-display); font-weight: bold; margin-bottom: 8px;">1. Introduction (प्रस्तावना)</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">50-70 words. Topic ke core concept ko simple and clean definition ke sath link karein.</p>
+                    </div>
+                    <div style="padding: 16px; background-color: var(--bg-accent); border-radius: var(--radius-sm); border-left: 4px solid var(--accent);">
+                        <h4 style="font-family: var(--font-display); font-weight: bold; margin-bottom: 8px;">2. Visual Flowchart</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Draw a clean structural flowchart. Ye answer ke start mein hi layout clear kar deta hai.</p>
+                    </div>
+                    <div style="padding: 16px; background-color: var(--bg-accent); border-radius: var(--radius-sm); border-left: 4px solid var(--success);">
+                        <h4 style="font-family: var(--font-display); font-weight: bold; margin-bottom: 8px;">3. Core Arguments</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">200-250 words. Apne subheadings aur points (min. 5-6 points) ko properly divide karein.</p>
+                    </div>
+                    <div style="padding: 16px; background-color: var(--bg-accent); border-radius: var(--radius-sm); border-left: 4px solid var(--warning);">
+                        <h4 style="font-family: var(--font-display); font-weight: bold; margin-bottom: 8px;">4. Indian Context</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">100 words. Bhanwari Devi Case, ASCI ads standard, item numbers ke actual Indian context dekar explain karein.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: VVIP BIG 6 QUESTIONS -->
+        <section id="questions" class="page">
+            <h1 class="page-title">🚀 VVIP Big 6 Questions</h1>
+            <p class="page-subtitle">Exhaustive 500-word exam answers and direct flowcharts inside each accordion</p>
+
+            <!-- Question 1 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3><span>Q1</span> Define Masculinities & explain its Social Construction</h3>
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+                </div>
+                <div class="accordion-content">
+                    
+                    
+
+                    <div class="lang-tabs">
+                        <button class="lang-tab active" onclick="switchLang(this, 'q1-hinglish')">Hinglish</button>
+                        <button class="lang-tab" onclick="switchLang(this, 'q1-hindi')">Hindi (Exam Language)</button>
+                    </div>
+                    
+                    <div id="q1-hinglish" class="lang-content active answer-body">
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["Gender Roles"] --> B["Masculinity (Male)"]
+                                B --> D["Connell's 4 Forms"]
+                                D --> D1["1. Hegemonic <br>- Aggressive, Dominant"]
+                                D --> D2["2. Subordinated <br>- Non-traditional, Sensitive"]
+                                D --> D3["3. Complicit <br>- Silent Beneficiary"]
+                                D --> D4["4. Marginalized <br>- Class/Caste Privileged"]
+                                D1 --> E["Patriarchal Dominance & Violence"]
+                        </div>
+                        <div class="flowchart-desc">Figure 1.1: Connell's Masculinity structure and its link to violence.</div>
+                    </div>
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["Gender Roles"] --> B["Masculinity (Male)"]
+                                B --> D["Connell's 4 Forms"]
+                                D --> D1["1. Hegemonic <br>- Aggressive, Dominant"]
+                                D --> D2["2. Subordinated <br>- Non-traditional, Sensitive"]
+                                D --> D3["3. Complicit <br>- Silent Beneficiary"]
+                                D --> D4["4. Marginalized <br>- Class/Caste Privileged"]
+                                D1 --> E["Patriarchal Dominance & Violence"]
+                        </div>
+                        <div class="flowchart-desc">Figure 1.1: Connell's Masculinity structure and its link to violence.</div>
+                    </div>
+                        <p><b>1. Introduction:</b><br>
+                        Suno, <b>Masculinity (पुरुषत्व)</b> koi biology nahi hai, ye ek social expectation hai. Society mard (men) se expect karti hai ki wo strong rahein, royein nahi ("Mard ko dard nahi hota"), aur family ke lead breadwinner banein. Sociologist **R.W. Connell** ne apni research mein saaf kaha ki society mein koi ek type ka purush nahi hota, balki iske multiple forms hote hain jo aapas mein power dynamic se jude hain.</p>
+                        
+                        <p><b>2. Core Arguments - Connell's 4 Forms of Masculinities:</b></p>
+                        <div class="answer-rich-box">
+                            <h5>R.W. Connell's Classification:</h5>
+                            <ul>
+                                <li><b>Hegemonic Masculinity (वर्चस्वशाली पुरुषत्व):</b> Ye society ka standard "Alpha Male" template hai. Isme mard ko aggressive, unemotional, strong, aur financially superior hona padta hai. Society mein baaki sabhi males aur females is model ke niche aate hain.</li>
+                                <li><b>Subordinated Masculinity (अधीनस्थ पुरुषत्व):</b> Jo men traditional strong standards ko match nahi karte (jaise gay men, sensitive, ya jo gharelu kaamo mein help karte hain), unhe society niche dekhti hai.</li>
+                                <li><b>Complicit Masculinity (सहयोगी पुरुषत्व):</b> Ye log khud aggressive ya dominant nahi hote, par ye system ka virodh bhi nahi karte. Ye chupchap patriarchal hierarchy ka benefit lete hain.</li>
+                                <li><b>Marginalized Masculinity (हाशिए का पुरुषत्व):</b> Garib, dalit ya underprivileged caste ke purush jo mard hain par unke paas economic/social power nahi hoti.</li>
+                            </ul>
+                        </div>
+
+                        <p><b>3. Relationship with Patriarchy and Violence:</b><br>
+                        Hegemonic masculinity seedhe patriarchy aur domestic violence se judi hai. Society jab mardon ko aakarshak aur dominant hone ke liye force karti hai, toh wo apni "manhood" ko prove karne ke liye auraton par power exert karte hain, jo aage chalkar domestic violence, harassment, aur safety issues ka sabab banta hai.</p>
+
+                        <p><b>4. Indian Context & Examples:</b><br>
+                        Indian families mein bachpan se toys divide kiye jaate hain—ladko ko gun ya cars aur ladkiyon ko dolls/kitchen set. Movies mein "aggressive hero" (jaise <i>Kabir Singh</i> ya <i>Animal</i>) ki toxic masculinity ko glorifying way mein pesh kiya jata hai, jo young boys ko violence ko mardangi samajhne par majboor karta hai.</p>
+
+                        <p><b>5. Conclusion:</b><br>
+                        Aakhiri mein, ek balanced society ke liye hume "Aggressive Masculinity" ke bajaye "Sensitive/Alternative Masculinities" ko badhava dena hoga, jahan mard freely ro sakein, sensitive ho sakein, aur gender equality ko support kar sakein.</p>
+                    </div>
+                    
+                    <div id="q1-hindi" class="lang-content answer-body">
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["लैंगिक भूमिकाएं (Gender Roles)"] --> B["पुरुषत्व (Masculinity)"]
+                                B --> D["कोनेल के 4 रूप (Connell's 4 Forms)"]
+                                D --> D1["1. वर्चस्वशाली (Hegemonic) <br>- आक्रामक, दबंग"]
+                                D --> D2["2. अधीनस्थ (Subordinated) <br>- गैर-पारंपरिक, संवेदनशील"]
+                                D --> D3["3. मिलीभगत (Complicit) <br>- मूक लाभार्थी"]
+                                D --> D4["4. हाशिए का (Marginalized) <br>- आर्थिक/जाति रूप से वंचित"]
+                                D1 --> E["पितृसत्तात्मक वर्चस्व और हिंसा"]
+                        </div>
+                        <div class="flowchart-desc">चित्र 1.1: कोनेल की पुरुषत्व संरचना और हिंसा से संबंध।</div>
+                    </div>
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["लैंगिक भूमिकाएं (Gender Roles)"] --> B["पुरुषत्व (Masculinity)"]
+                                B --> D["कोनेल के 4 रूप (Connell's 4 Forms)"]
+                                D --> D1["1. वर्चस्वशाली (Hegemonic) <br>- आक्रामक, दबंग"]
+                                D --> D2["2. अधीनस्थ (Subordinated) <br>- गैर-पारंपरिक, संवेदनशील"]
+                                D --> D3["3. मिलीभगत (Complicit) <br>- मूक लाभार्थी"]
+                                D --> D4["4. हाशिए का (Marginalized) <br>- आर्थिक/जाति रूप से वंचित"]
+                                D1 --> E["पितृसत्तात्मक वर्चस्व और हिंसा"]
+                        </div>
+                        <div class="flowchart-desc">चित्र 1.1: कोनेल की पुरुषत्व संरचना और हिंसा से संबंध।</div>
+                    </div>
+                        <p><b>1. प्रस्तावना:</b><br>
+                        पुरुषत्व (Masculinity) उन गुणों, व्यवहारों और सामाजिक भूमिकाओं का समूह है जो किसी समाज में पुरुषों के लिए उपयुक्त माने जाते हैं। यह कोई जेंडर संरचना नहीं बल्कि सामाजिक और सांस्कृतिक निर्माण है। प्रसिद्ध समाजशास्त्री <b>आर. डब्ल्यू. कोनेल (R.W. Connell)</b> ने स्पष्ट किया है कि पुरुषत्व का कोई एक रूप नहीं होता, बल्कि समाज में पुरुषत्व के विविध रूप विद्यमान हैं।</p>
+                        
+                        <p><b>2. पुरुषत्व के विभिन्न रूप:</b></p>
+                        <div class="answer-rich-box">
+                            <h5>कोनेल के अनुसार पुरुषत्व के चार प्रमुख प्रकार:</h5>
+                            <ul>
+                                <li><b>वर्चस्वशाली पुरुषत्व (Hegemonic Masculinity):</b> यह समाज में सबसे आदर्श और शक्तिशाली रूप माना जाता है। इसके तहत पुरुषों को आक्रामक, निडर, मजबूत, भावहीन और परिवार का मुख्य कमाऊ सदस्य होने के लिए प्रेरित किया जाता है।</li>
+                                <li><b>अधीनस्थ पुरुषत्व (Subordinated Masculinity):</b> इसमें वे पुरुष शामिल हैं जो वर्चस्वशाली मानकों को पूरा नहीं करते, जैसे समलैंगिक या अत्यधिक संवेदनशील पुरुष, जिन्हें मुख्यधारा के पुरुष कमतर आंकते हैं।</li>
+                                <li><b>मिलीभगत वाला पुरुषत्व (Complicit Masculinity):</b> वे पुरुष जो व्यक्तिगत रूप से आक्रामक या वर्चस्ववादी नहीं होते, परंतु वे व्यवस्था का विरोध भी नहीं करते क्योंकि उन्हें इस व्यवस्था से सामाजिक लाभ प्राप्त होता है।</li>
+                                <li><b>हाशिए का पुरुषत्व (Marginalized Masculinity):</b> जाति, वर्ग या नस्ल के आधार पर वंचित पुरुष, जो पुरुष होने के बावजूद सामाजिक और आर्थिक शक्ति से विहीन होते हैं।</li>
+                            </ul>
+                        </div>
+
+                        <p><b>3. पितृसत्ता और हिंसा से संबंध:</b><br>
+                        वर्चस्वशाली पुरुषत्व पितृसत्ता (Patriarchy) को बनाए रखने का मुख्य उपकरण है। जब पुरुषों को अपनी "मर्दानी छवि" को बनाए रखने का अत्यधिक दबाव महसूस होता है, तो वे आक्रामकता और महिलाओं पर नियंत्रण स्थापित करने का प्रयास करते हैं, जो घरेलू हिंसा और लैंगिक उत्पीड़न के रूप में सामने आता है।</p>
+
+                        <p><b>4. भारतीय संदर्भ और उदाहरण:</b><br>
+                        भारतीय समाज में लड़कों को बचपन से सिखाया जाता है कि "मर्द रोते नहीं हैं।" फिल्मों में आक्रामक और हिंसक नायक के चरित्र को गौरवमयी बनाकर दिखाना युवाओं में इस आक्रामक मानसिकता को बल देता है।</p>
+
+                        <p><b>5. निष्कर्ष:</b><br>
+                        अतः लैंगिक समानता के लिए समाज में आक्रामक पुरुषत्व के स्थान पर संवेदनशील और सकारात्मक पुरुषत्व (Positive Masculinities) को बढ़ावा देना आवश्यक है।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3><span>Q2</span> "Gender is Socially Constructed" - Evaluate this Statement</h3>
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+                </div>
+                <div class="accordion-content">
+                    
+                    
+
+                    <div class="lang-tabs">
+                        <button class="lang-tab active" onclick="switchLang(this, 'q2-hinglish')">Hinglish</button>
+                        <button class="lang-tab" onclick="switchLang(this, 'q2-hindi')">Hindi (Exam Language)</button>
+                    </div>
+                    
+                    <div id="q2-hinglish" class="lang-content active answer-body">
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["Human Identity"] --> B["Sex (Biological, Fix)"]
+                                A --> C["Gender (Sociological, Dynamic)"]
+                                C --> D["4 Core Social Agents"]
+                                D --> D1["Family <br>- Toys & Colors"]
+                                D --> D2["Language <br>- Proverb Bias"]
+                                D --> D3["School <br>- Stereotype Books"]
+                                D --> D4["Media <br>- Laundry & Kitchen Ads"]
+                        </div>
+                        <div class="flowchart-desc">Figure 2.1: Social socialization agents constructing gender roles.</div>
+                    </div>
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["Human Identity"] --> B["Sex (Biological, Fix)"]
+                                A --> C["Gender (Sociological, Dynamic)"]
+                                C --> D["4 Core Social Agents"]
+                                D --> D1["Family <br>- Toys & Colors"]
+                                D --> D2["Language <br>- Proverb Bias"]
+                                D --> D3["School <br>- Stereotype Books"]
+                                D --> D4["Media <br>- Laundry & Kitchen Ads"]
+                        </div>
+                        <div class="flowchart-desc">Figure 2.1: Social socialization agents constructing gender roles.</div>
+                    </div>
+                        <p><b>1. Introduction:</b><br>
+                        Suno, **Sex** aur **Gender** dono alag cheezein hain. Sex biological hota hai jo nature se milta hai (Chromosomes, reproductive organs). Gender society banati hai. Feminist thinker **Simone de Beauvoir** ka sabse bada quote hai: *"One is not born, but rather becomes a woman"* (Aurat paida nahi hoti, use society aurat banati hai).</p>
+
+                        <p><b>2. Sex vs Gender Difference Table:</b></p>
+                        <div class="table-responsive">
+                            <table class="styled-table">
+                                <thead>
+                                    <tr>
+                                        <th>Sex (लिंग)</th>
+                                        <th>Gender (जेंडर)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Biological & Natural (प्राकृतिक)</td>
+                                        <td>Social & Cultural (सामाजिक)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Universal (Sabhi countries mein same)</td>
+                                        <td>Dynamic (Time aur culture ke sath badal sakta hai)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Example: Sirf female child birth de sakti hai</td>
+                                        <td>Example: Female hi cooking karegi ye rule society ka hai</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p><b>3. Core Agents of Social Construction (Kaise banta hai Gender?):</b></p>
+                        <div class="answer-rich-box">
+                            <h5>The 4 Pillars of Socialization:</h5>
+                            <ul>
+                                <li><b>Family (परिवार):</b> Sabse pehla agent. Bachpan se pink vs blue color choice. Ladko ke rone par tokena "Ladkiyon ki tarah kyun ro rahe ho?".</li>
+                                <li><b>Language (भाषा):</b> Humari language hi bias se bhari hai. Chairman, Mankind, Businessman bolna. Hindi ke proverbs jaise "Choodiyan pehenna" jo weakness ko aurat se link karta hai.</li>
+                                <li><b>School & Textbooks (शिक्षा):</b> Purani NCERT books mein mother ko householder aur father ko salary-earning career man dikhaya jata tha.</li>
+                                <li><b>Media & Advertisements (मीडिया):</b> Washing powder, kitchen products, aur spices ke ads mein humesha aurat hi model hoti hai, jo brainwash karta hai ki ghar sambhalna sirf unka kaam hai.</li>
+                            </ul>
+                        </div>
+
+                        <p><b>4. Conclusion:</b><br>
+                        Gender equality tabhi aayegi jab hum is social construction ko todkar (deconstruct karke) gender-neutral values ko adopt karenge.</p>
+                    </div>
+                    
+                    <div id="q2-hindi" class="lang-content answer-body">
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["मानव पहचान (Human Identity)"] --> B["लिंग (Sex - जैविक, स्थिर)"]
+                                A --> C["जेंडर (Gender - सामाजिक, गतिशील)"]
+                                C --> D["4 मुख्य सामाजिक कारक (Agents)"]
+                                D --> D1["परिवार (Family) <br>- खिलौने और रंग चयन"]
+                                D --> D2["भाषा (Language) <br>- मुहावरों में जेंडर पूर्वाग्रह"]
+                                D --> D3["विद्यालय (School) <br>- रूढ़िवादी पाठ्यपुस्तकें"]
+                                D --> D4["मीडिया (Media) <br>- कपड़े धोने और रसोई के विज्ञापन"]
+                        </div>
+                        <div class="flowchart-desc">चित्र 2.1: जेंडर भूमिकाओं का निर्माण करने वाले प्रमुख कारक।</div>
+                    </div>
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["मानव पहचान (Human Identity)"] --> B["लिंग (Sex - जैविक, स्थिर)"]
+                                A --> C["जेंडर (Gender - सामाजिक, गतिशील)"]
+                                C --> D["4 मुख्य सामाजिक कारक (Agents)"]
+                                D --> D1["परिवार (Family) <br>- खिलौने और रंग चयन"]
+                                D --> D2["भाषा (Language) <br>- मुहावरों में जेंडर पूर्वाग्रह"]
+                                D --> D3["विद्यालय (School) <br>- रूढ़िवादी पाठ्यपुस्तकें"]
+                                D --> D4["मीडिया (Media) <br>- कपड़े धोने और रसोई के विज्ञापन"]
+                        </div>
+                        <div class="flowchart-desc">चित्र 2.1: जेंडर भूमिकाओं का निर्माण करने वाले प्रमुख कारक।</div>
+                    </div>
+                        <p><b>1. प्रस्तावना:</b><br>
+                        "जेंडर एक सामाजिक संरचना है" (Gender is Socially Constructed) समाजशास्त्र की एक बुनियादी अवधारणा है। लिंग (Sex) प्राकृतिक और जैविक होता है, जबकि जेंडर समाज द्वारा गढ़ी गई पहचान, व्यवहार और भूमिकाएं हैं। महान नारीवादी विचारक <b>सिमोन डी बेउवोइर (Simone de Beauvoir)</b> ने कहा था: *"स्त्री पैदा नहीं होती, बल्कि बना दी जाती है।"*</p>
+
+                        <p><b>2. सामाजिक संरचना के प्रमुख कारक (Agents of Socialization):</b></p>
+                        <div class="answer-rich-box">
+                            <h5>जेंडर निर्माण के चार स्तंभ:</h5>
+                            <ul>
+                                <li><b>परिवार (Family):</b> जेंडर का निर्माण परिवार से शुरू होता है। लड़कियों के लिए गुड़िया, घर-घर और लड़कों के लिए बंदूक, कार जैसे खिलौने निर्धारित करना इसी समाजीकरण का हिस्सा है।</li>
+                                <li><b>भाषा (Language):</b> भाषा पुरुषों को केंद्र में रखकर बनाई गई है। हिंदी में "मर्दानी" शब्द को बहादुरी और "चूड़ियाँ पहनना" को कायरता से जोड़ा गया है, जो सीधे तौर पर जेंडर पूर्वाग्रह को दर्शाता है।</li>
+                                <li><b>शिक्षा और स्कूल (Schools):</b> स्कूलों में जेंडर आधारित गतिविधियां (जैसे लड़कियों को गृह विज्ञान और लड़कों को खेल/गणित की ओर भेजना) रूढ़ियों को मजबूत करती हैं।</li>
+                                <li><b>मीडिया और विज्ञापन (Media):</b> सर्फ, बर्तन धोने के साबुन और खाना पकाने के तेल के विज्ञापनों में केवल महिलाओं को हंसते हुए काम करते दिखाना समाज में यह धारणा पक्की करता है कि घरेलू काम केवल महिलाओं का है।</li>
+                            </ul>
+                        </div>
+
+                        <p><b>3. निष्कर्ष:</b><br>
+                        अतः जेंडर कोई प्राकृतिक सच नहीं है, इसे बदला जा सकता है। एक संवेदनशील और निष्पक्ष समाज के निर्माण के लिए जेंडर-रूढ़ियों को समाप्त करना आवश्यक है।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3><span>Q3</span> Labor Force Participation Gender Gap & Paid Care Work</h3>
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+                </div>
+                <div class="accordion-content">
+                    
+                    
+
+                    <div class="lang-tabs">
+                        <button class="lang-tab active" onclick="switchLang(this, 'q3-hinglish')">Hinglish</button>
+                        <button class="lang-tab" onclick="switchLang(this, 'q3-hindi')">Hindi (Exam Language)</button>
+                    </div>
+                    
+                    <div id="q3-hinglish" class="lang-content active answer-body">
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["Economic Inequality"] --> B["Low LFPR for Women (~20-25%)"]
+                                B --> C["Primary Barriers"]
+                                C --> C1["1. Sexual Division of Labor <br>- Home = Women, Work = Men"]
+                                C --> C2["2. Double Burden <br>- Office + Domestic Unpaid Labor"]
+                                C --> C3["3. Glass Ceiling <br>- Promotion barriers in corporates"]
+                                B --> D["Paid Care Work"]
+                                D --> D1["Low Wages, No Social Security"]
+                        </div>
+                        <div class="flowchart-desc">Figure 3.1: Structural barriers causing the gender gap in labor force.</div>
+                    </div>
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["Economic Inequality"] --> B["Low LFPR for Women (~20-25%)"]
+                                B --> C["Primary Barriers"]
+                                C --> C1["1. Sexual Division of Labor <br>- Home = Women, Work = Men"]
+                                C --> C2["2. Double Burden <br>- Office + Domestic Unpaid Labor"]
+                                C --> C3["3. Glass Ceiling <br>- Promotion barriers in corporates"]
+                                B --> D["Paid Care Work"]
+                                D --> D1["Low Wages, No Social Security"]
+                        </div>
+                        <div class="flowchart-desc">Figure 3.1: Structural barriers causing the gender gap in labor force.</div>
+                    </div>
+                        <p><b>1. Introduction:</b><br>
+                        India mein azaadi ke baad se education toh badhi hai, par **Female Labour Force Participation Rate (LFPR)** lagbhag 20-25% par hi simit hai. Iska matlab hai ki 4 mardon ke mukable sirf 1 aurat naukri kar rahi hai. Ye gender gap economy ko bohot nuksan pahunchata hai.</p>
+
+                        <p><b>2. Core Economic Barriers (Ghar aur Bahar ka Antar):</b></p>
+                        <div class="answer-rich-box">
+                            <h5>Key Structural Issues:</h5>
+                            <ul>
+                                <li><b>Sexual Division of Labour (श्रम का लैंगिक विभाजन):</b> Society ka standard rule: "Mardon ka kaam paise kamana aur Auraton ka kaam ghar sambhalna." Aurat jo ghar mein khana banana, safai, aur bache sambhalne ka kaam karti hai, use <b>Unpaid/Invisible Labour</b> mana jata hai jiska GDP mein koi contribution count nahi hota.</li>
+                                <li><b>Double Burden / Second Shift (दोहरा बोझ):</b> Agar koi aurat bahar job karti bhi hai, toh ghar aakar use domestic chores aur family care karni padti hai. Ise double burden kehte hain jo career growth mein rukawat banta hai.</li>
+                                <li><b>Glass Ceiling (ग्लास सीलिंग):</b> Ek invisible barrier jo female employees ko corporates mein senior management ya board level tak pahunchne se rokta hai, chahe wo mardon se behtar kyun na ho.</li>
+                            </ul>
+                        </div>
+
+                        <p><b>3. Paid Care Work (सवैतनिक देखभाल कार्य):</b><br>
+                        Nurses, maids, nannies, aur housekeepers jo care sector mein paid kaam karti hain, unhe bohot low wages milti hain. Inhe asangathit kshetra (unorganized sector) mein count kiya jata hai, isliye inke paas pension, medical leave, ya safety jaisi koi **Social Security** nahi hoti.</p>
+
+                        <p><b>4. Indian Context & Solutions:</b><br>
+                        Krishi kshetra (agriculture) mein purush jaise rogar ke liye shahar chale jaate hain, toh piche auratein poori kheti sambhalti hain (Feminization of Agriculture), par unke paas zameen ke malkana hak nahi hote. Is gap ko door karne ke liye **Equal Pay, Childcare support facilities at workplace, aur safe transport** zaroori hain.</p>
+
+                        <p><b>5. Conclusion:</b><br>
+                        Jab tak women ko economic independence nahi milegi aur care economy ko formal status nahi milega, tab tak gender equality aana namumkin hai.</p>
+                    </div>
+                    
+                    <div id="q3-hindi" class="lang-content answer-body">
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["आर्थिक असमानता (Economic Inequality)"] --> B["कम महिला श्रम भागीदारी (~20-25% LFPR)"]
+                                B --> C["प्राथमिक बाधाएं (Primary Barriers)"]
+                                C --> C1["1. श्रम का लैंगिक विभाजन <br>- घर = महिला, बाहर = पुरुष"]
+                                C --> C2["2. दोहरा बोझ (Double Burden) <br>- कार्यालय + घरेलू अवैतनिक श्रम"]
+                                C --> C3["3. ग्लास सीलिंग (Glass Ceiling) <br>- कॉर्पोरेट में पदोन्नति की बाधाएं"]
+                                B --> D["सवैतनिक देखभाल कार्य (Paid Care Work)"]
+                                D --> D1["कम वेतन, सामाजिक सुरक्षा का अभाव"]
+                        </div>
+                        <div class="flowchart-desc">चित्र 3.1: श्रम बल में जेंडर अंतर पैदा करने वाली संरचनात्मक बाधाएं।</div>
+                    </div>
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["आर्थिक असमानता (Economic Inequality)"] --> B["कम महिला श्रम भागीदारी (~20-25% LFPR)"]
+                                B --> C["प्राथमिक बाधाएं (Primary Barriers)"]
+                                C --> C1["1. श्रम का लैंगिक विभाजन <br>- घर = महिला, बाहर = पुरुष"]
+                                C --> C2["2. दोहरा बोझ (Double Burden) <br>- कार्यालय + घरेलू अवैतनिक श्रम"]
+                                C --> C3["3. ग्लास सीलिंग (Glass Ceiling) <br>- कॉर्पोरेट में पदोन्नति की बाधाएं"]
+                                B --> D["सवैतनिक देखभाल कार्य (Paid Care Work)"]
+                                D --> D1["कम वेतन, सामाजिक सुरक्षा का अभाव"]
+                        </div>
+                        <div class="flowchart-desc">चित्र 3.1: श्रम बल में जेंडर अंतर पैदा करने वाली संरचनात्मक बाधाएं।</div>
+                    </div>
+                        <p><b>1. प्रस्तावना:</b><br>
+                        भारतीय अर्थव्यवस्था में महिला श्रम बल भागीदारी (Female LFPR) चिंताजनक रूप से कम (लगभग 20-25%) है। आर्थिक विकास और लैंगिक समानता सीधे तौर पर एक-दूसरे से जुड़े हुए हैं। महिलाओं की कम भागीदारी के पीछे कई संरचनात्मक बाधाएं हैं।</p>
+
+                        <p><b>2. आर्थिक और संरचनात्मक बाधाएं:</b></p>
+                        <div class="answer-rich-box">
+                            <h5>प्रमुख कारक:</h5>
+                            <ul>
+                                <li><b>श्रम का लैंगिक विभाजन (Sexual Division of Labour):</b> यह धारणा कि घरेलू कार्य और बच्चों की देखरेख केवल महिलाओं की जिम्मेदारी है। महिलाओं के इस घरेलू श्रम को "अदृश्य श्रम" (Invisible Labour) कहा जाता है क्योंकि इसके लिए उन्हें कोई वेतन नहीं मिलता और न ही यह राष्ट्रीय आय (GDP) में गिना जाता है।</li>
+                                <li><b>दोहरा बोझ (Double Burden):</b> कामकाजी महिलाओं को कार्यालय के साथ-साथ घर के कार्यों को भी समान रूप से संभालना पड़ता है, जिससे उनकी शारीरिक और मानसिक ऊर्जा अत्यधिक प्रभावित होती है।</li>
+                                <li><b>ग्लास सीलिंग (Glass Ceiling):</b> एक ऐसी अदृश्य सामाजिक दीवार जो महिलाओं को कॉर्पोरेट जगत में शीर्ष नेतृत्व पदों और उच्च वेतन वाली नौकरियों तक पहुँचने से रोकती है।</li>
+                            </ul>
+                        </div>
+
+                        <p><b>3. सवैतनिक देखभाल कार्य (Paid Care Work):</b><br>
+                        नर्स, आया, और घरेलू सहायिकाओं जैसे सवैतनिक कार्यों में अधिकांशतः महिलाएं ही कार्यरत हैं। यह क्षेत्र अत्यंत असुरक्षित है, जहाँ काम के घंटे अधिक, वेतन बेहद कम, और किसी प्रकार की सामाजिक सुरक्षा (जैसे पेंशन, बीमा) का पूर्ण अभाव होता है।</p>
+
+                        <p><b>4. निष्कर्ष:</b><br>
+                        महिला सशक्तिकरण के लिए समान कार्य के लिए समान वेतन, सुरक्षित कार्यस्थल और मातृत्व लाभों के साथ पितृत्व अवकाश (Paternity Leave) की व्यवस्था की जानी चाहिए, जिससे पुरुष भी घरेलू कार्यों में सहभागिता कर सकें।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3><span>Q4</span> Workplace Sexual Harassment & POSH Act 2013</h3>
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+                </div>
+                <div class="accordion-content">
+                    
+                    
+
+                    <div class="lang-tabs">
+                        <button class="lang-tab active" onclick="switchLang(this, 'q4-hinglish')">Hinglish</button>
+                        <button class="lang-tab" onclick="switchLang(this, 'q4-hindi')">Hindi (Exam Language)</button>
+                    </div>
+                    
+                    <div id="q4-hinglish" class="lang-content active answer-body">
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["Workplace Sexual Harassment"] --> B["Bhanwari Devi Case (1992)"]
+                                B --> C["Supreme Court: Vishakha Guidelines"]
+                                C --> D["POSH Act 2013"]
+                                D --> E["Internal Complaints Committee (ICC)"]
+                                E --> E1["Mandatory in 10+ employees offices"]
+                                E --> E2["Headed by Senior Woman Employee"]
+                                E --> E3["Min. 50% members must be Women"]
+                                E --> E4["1 External NGO Member"]
+                        </div>
+                        <div class="flowchart-desc">Figure 4.1: Historical background and structure of the POSH Act 2013.</div>
+                    </div>
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["Workplace Sexual Harassment"] --> B["Bhanwari Devi Case (1992)"]
+                                B --> C["Supreme Court: Vishakha Guidelines"]
+                                C --> D["POSH Act 2013"]
+                                D --> E["Internal Complaints Committee (ICC)"]
+                                E --> E1["Mandatory in 10+ employees offices"]
+                                E --> E2["Headed by Senior Woman Employee"]
+                                E --> E3["Min. 50% members must be Women"]
+                                E --> E4["1 External NGO Member"]
+                        </div>
+                        <div class="flowchart-desc">Figure 4.1: Historical background and structure of the POSH Act 2013.</div>
+                    </div>
+                        <p><b>1. Introduction:</b><br>
+                        Har aurat ka basic fundamental right hai ki use ek safe aur healthy working environment mile. Workplace par hone wala sexual harassment na sirf unke self-respect ko choot pahunchata hai balki unke rogar ke right ko bhi cheenta hai. Isko rokne ke liye India mein **POSH Act 2013** laya gaya.</p>
+
+                        <p><b>2. Bhanwari Devi Case & Vishakha Guidelines:</b><br>
+                        1992 mein Rajasthan ki ek social worker, **Bhanwari Devi**, ne jab baal vivah (child marriage) rokne ki koshish ki, toh unka gang-rape kiya gaya. Iske baad social groups ne Supreme Court mein PIL dali, jiske baad Supreme Court ne **Vishakha Guidelines** banayi. Yahi guidelines aage chalkar *POSH Act 2013* bani.</p>
+
+                        <p><b>3. Core Features of POSH Act 2013:</b></p>
+                        <div class="answer-rich-box">
+                            <h5>Internal Complaints Committee (ICC) Rules:</h5>
+                            <ul>
+                                <li><b>Mandatory Setup:</b> Har wo private ya government organization jahan 10 se zyada employees hain, wahan ek **Internal Complaints Committee (ICC)** hona compulsory hai.</li>
+                                <li><b>Leadership:</b> ICC ki chairperson humesha ek senior level ki female employee honi chahiye.</li>
+                                <li><b>Members:</b> Minimum 50% members female hone chahiye taaki victim bejhijhak apni complaint rakh sake.</li>
+                                <li><b>External Member:</b> Ek member kisi NGO se hona chahiye jo women safety aur rights ke liye kaam karta ho.</li>
+                            </ul>
+                        </div>
+
+                        <p><b>4. Types of Workplace Harassment:</b><br>
+                        * **Quid Pro Quo (कुछ के बदले कुछ):** Female employee ko promotion ya increments ke badle sexual favors maangna.<br>
+                        * **Hostile Work Environment:** Office ka environment uncomfortable bana dena, jaise dirty jokes crack karna, double-meaning comments pass karna, ya un-welcomed physical touch.</p>
+
+                        <p><b>5. Conclusion:</b><br>
+                        POSH Act ek behtareen kanoon hai, par iska actual implementation tabhi hoga jab company management bina kisi bias ke time par inquiry karegi aur female staff ko safe and healthy workspace degi.</p>
+                    </div>
+                    
+                    <div id="q4-hindi" class="lang-content answer-body">
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["कार्यस्थल पर यौन उत्पीड़न"] --> B["भंवरी देवी मामला (1992)"]
+                                B --> C["उच्चतम न्यायालय: विशाखा दिशानिर्देश"]
+                                C --> D["POSH अधिनियम 2013"]
+                                D --> E["आन्तरिक शिकायत समिति (ICC)"]
+                                E --> E1["10+ कर्मचारियों वाले कार्यालयों में अनिवार्य"]
+                                E --> E2["वरिष्ठ महिला कर्मचारी की अध्यक्षता में"]
+                                E --> E3["न्यूनतम 50% सदस्य महिला होना अनिवार्य"]
+                                E --> E4["1 बाहरी NGO सदस्य"]
+                        </div>
+                        <div class="flowchart-desc">चित्र 4.1: POSH अधिनियम 2013 की ऐतिहासिक पृष्ठभूमि और संरचना।</div>
+                    </div>
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["कार्यस्थल पर यौन उत्पीड़न"] --> B["भंवरी देवी मामला (1992)"]
+                                B --> C["उच्चतम न्यायालय: विशाखा दिशानिर्देश"]
+                                C --> D["POSH अधिनियम 2013"]
+                                D --> E["आन्तरिक शिकायत समिति (ICC)"]
+                                E --> E1["10+ कर्मचारियों वाले कार्यालयों में अनिवार्य"]
+                                E --> E2["वरिष्ठ महिला कर्मचारी की अध्यक्षता में"]
+                                E --> E3["न्यूनतम 50% सदस्य महिला होना अनिवार्य"]
+                                E --> E4["1 बाहरी NGO सदस्य"]
+                        </div>
+                        <div class="flowchart-desc">चित्र 4.1: POSH अधिनियम 2013 की ऐतिहासिक पृष्ठभूमि और संरचना।</div>
+                    </div>
+                        <p><b>1. प्रस्तावना:</b><br>
+                        कार्यस्थल पर यौन उत्पीड़न महिलाओं के बुनियादी मानवाधिकारों और आजीविका के अधिकार का गंभीर उल्लंघन है। भारत सरकार ने महिलाओं को कार्यस्थल पर सुरक्षित वातावरण प्रदान करने के लिए <b>कार्यस्थल पर महिलाओं का यौन उत्पीड़न (रोकथाम, निषेध और निवारण) अधिनियम, 2013 (POSH Act)</b> लागू किया।</p>
+
+                        <p><b>2. ऐतिहासिक पृष्ठभूमि (भंवरी देवी मामला):</b><br>
+                        1992 में राजस्थान की साथिन <b>भंवरी देवी</b> ने बाल विवाह रुकवाने के प्रयास किए, जिसके प्रतिशोध में उनके साथ सामूहिक बलात्कार किया गया। इस घटना के विरोध में गैर-सरकारी संगठनों ने सर्वोच्च न्यायालय में जनहित याचिका दायर की, जिसके परिणामस्वरूप न्यायालय ने 1997 में प्रसिद्ध <b>विशाखा दिशानिर्देश</b> जारी किए। यही दिशानिर्देश बाद में 2013 के POSH अधिनियम का आधार बने।</p>
+
+                        <p><b>3. POSH अधिनियम 2013 के मुख्य प्रावधान (ICC का गठन):</b></p>
+                        <div class="answer-rich-box">
+                            <h5>आंतरिक शिकायत समिति (ICC) के नियम:</h5>
+                            <ul>
+                                <li><b>अनिवार्यता:</b> प्रत्येक वह संस्थान जहाँ 10 या अधिक कर्मचारी कार्यरत हैं, वहाँ एक आंतरिक शिकायत समिति (ICC) का गठन अनिवार्य है।</li>
+                                <li><b>अध्यक्ष:</b> समिति की पीठासीन अधिकारी अनिवार्य रूप से संस्थान की एक वरिष्ठ महिला कर्मचारी होनी चाहिए।</li>
+                                <li><b>संरचना:</b> समिति के कम से कम 50% सदस्य महिला होने चाहिए।</li>
+                                <li><b>बाहरी सदस्य:</b> समिति में एक सदस्य महिला अधिकारों के लिए काम करने वाले गैर-सरकारी संगठन (NGO) से होना अनिवार्य है।</li>
+                            </ul>
+                        </div>
+
+                        <p><b>4. निष्कर्ष:</b><br>
+                        यह कानून महिलाओं को न केवल सुरक्षा प्रदान करता है बल्कि उन्हें आत्मनिर्भर बनने के लिए एक भयमुक्त और गरिमापूर्ण कार्यस्थल का अधिकार भी देता है।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3><span>Q5</span> Describe Gender Differences in the Use of Language</h3>
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+                </div>
+                <div class="accordion-content">
+                    
+                    
+
+                    <div class="lang-tabs">
+                        <button class="lang-tab active" onclick="switchLang(this, 'q5-hinglish')">Hinglish</button>
+                        <button class="lang-tab" onclick="switchLang(this, 'q5-hindi')">Hindi (Exam Language)</button>
+                    </div>
+                    
+                    <div id="q5-hinglish" class="lang-content active answer-body">
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["Language and Gender"] --> B["Sexist Language (Androcentric)"]
+                                A --> C["Conversational Styles"]
+                                B --> B1["Male as default <br>- Chairman <br>- Mankind"]
+                                B --> B2["Biased Hindi Proverbs <br>- 'Choodiyan pehenna'"]
+                                C --> WM["Women (Cooperative) <br>- Express empathy <br>- Use tag questions 'Hai na?'"]
+                                C --> MN["Men (Dominant) <br>- Information-oriented <br>- Interrupt conversations"]
+                        </div>
+                        <div class="flowchart-desc">Figure 5.1: Gender differences in communication and sexist vocabulary.</div>
+                    </div>
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["Language and Gender"] --> B["Sexist Language (Androcentric)"]
+                                A --> C["Conversational Styles"]
+                                B --> B1["Male as default <br>- Chairman <br>- Mankind"]
+                                B --> B2["Biased Hindi Proverbs <br>- 'Choodiyan pehenna'"]
+                                C --> WM["Women (Cooperative) <br>- Express empathy <br>- Use tag questions 'Hai na?'"]
+                                C --> MN["Men (Dominant) <br>- Information-oriented <br>- Interrupt conversations"]
+                        </div>
+                        <div class="flowchart-desc">Figure 5.1: Gender differences in communication and sexist vocabulary.</div>
+                    </div>
+                        <p><b>1. Introduction:</b><br>
+                        Suno, language sirf communication ka zariya nahi hai; ye society ke power dynamics aur gender inequalities ko bhi dikhati hai. Humari rozmarra ki boli (everyday speech) aur words se hi gender discrimination dikh jata hai. Iske do bade aspect hain: **Sexist/Androcentric Language** aur **Conversational Styles**.</p>
+
+                        <p><b>2. Androcentric (Male-dominated) Language:</b><br>
+                        Humari language mardon ko default maanti hai, jaise sabhi humans ko represent karne ke liye "Mankind" ya "Manpower" bolna. Corporate mein "Chairman" bolna. Ab iski jagah Gender-Neutral terms adopt kiye ja rahe hain jaise *Chairperson*, *Humanity*, *Human Resources*. 
+                        Hindi language mein kuch proverbs jaise "Choodiyan pehenna" ka matlab kamzori se jodna, sidhe tor par women ko downgrade karta hai.</p>
+
+                        <p><b>3. Gender Differences in Conversational Styles:</b></p>
+                        <div class="answer-rich-box">
+                            <h5>How Men vs Women Communicate:</h5>
+                            <ul>
+                                <li><b>Women Style (Cooperative & Empathetic):</b> Auratein humesha social connections banane aur dushmano ko door karne ke liye bolti hain. Wo aksar apni baat ke end mein tag questions use karti hain, jaise *"Ye chhota sa badlaav sahi hai na?"* taaki aam-sammati ban sake.</li>
+                                <li><b>Men Style (Dominant & Informative):</b> Mardon ka bolne ka tarika status aur control dikhane ke liye hota hai. Wo direct commands dete hain aur doosron ke bolne ke bich mein interruption (tokna) zyada karte hain.</li>
+                            </ul>
+                        </div>
+
+                        <p><b>4. Conclusion:</b><br>
+                        Language hamari soch ko reflect karti hai. Agar hum ek equal society chahte hain, toh hume gender-neutral terms use karne honge aur androgynous language styles ko promote karna hoga.</p>
+                    </div>
+                    
+                    <div id="q5-hindi" class="lang-content answer-body">
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["भाषा और जेंडर (Language and Gender)"] --> B["लिंगवादी भाषा (Sexist Language)"]
+                                A --> C["बातचीत की शैलियाँ (Conversational Styles)"]
+                                B --> B1["पुरुष डिफ़ॉल्ट रूप में <br>- Chairman के स्थान पर Chairperson"]
+                                B --> B2["पूर्वाग्रह से ग्रसित मुहावरे <br>- जैसे 'चूड़ियाँ पहनना'"]
+                                C --> WM["महिलाएं (सहयोगात्मक) <br>- सहानुभूति व्यक्त करना <br>- अंत में प्रश्न जोड़ना 'है ना?'"]
+                                C --> MN["पुरुष (वर्चस्ववादी) <br>- सूचनात्मक दृष्टिकोण <br>- बातचीत में अधिक टोकना (Interrupt)"]
+                        </div>
+                        <div class="flowchart-desc">चित्र 5.1: संचार में जेंडर अंतर और लिंगवादी शब्दावली।</div>
+                    </div>
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["भाषा और जेंडर (Language and Gender)"] --> B["लिंगवादी भाषा (Sexist Language)"]
+                                A --> C["बातचीत की शैलियाँ (Conversational Styles)"]
+                                B --> B1["पुरुष डिफ़ॉल्ट रूप में <br>- Chairman के स्थान पर Chairperson"]
+                                B --> B2["पूर्वाग्रह से ग्रसित मुहावरे <br>- जैसे 'चूड़ियाँ पहनना'"]
+                                C --> WM["महिलाएं (सहयोगात्मक) <br>- सहानुभूति व्यक्त करना <br>- अंत में प्रश्न जोड़ना 'है ना?'"]
+                                C --> MN["पुरुष (वर्चस्ववादी) <br>- सूचनात्मक दृष्टिकोण <br>- बातचीत में अधिक टोकना (Interrupt)"]
+                        </div>
+                        <div class="flowchart-desc">चित्र 5.1: संचार में जेंडर अंतर और लिंगवादी शब्दावली।</div>
+                    </div>
+                        <p><b>1. प्रस्तावना:</b><br>
+                        भाषा और जेंडर का संबंध अत्यंत गहरा है। भाषा केवल विचारों के आदान-प्रदान का माध्यम नहीं है, बल्कि यह समाज के शक्ति संबंधों और जेंडर असमानताओं को भी प्रदर्शित करती है। लिंगवादी भाषा और बातचीत की शैली में अंतर इसके प्रमुख उदाहरण हैं।</p>
+
+                        <p><b>2. लिंगवादी शब्दावली (Sexist/Androcentric Language):</b><br>
+                        हमारी भाषा ऐतिहासिक रूप से पुरुष-केंद्रित (Androcentric) रही है। उदाहरण के लिए, मानव जाति के लिए अंग्रेजी में 'Mankind' और व्यवसाय प्रमुख के लिए 'Chairman' का प्रयोग सामान्य था, जिसे अब बदलकर 'Humanity' और 'Chairperson' जैसी जेंडर-तटस्थ (Gender-Neutral) शब्दावली में बदला जा रहा है। हिंदी मुहावरे जैसे "चूड़ियाँ पहनना" सीधे तौर पर कमजोरी और कायरता को महिलाओं से जोड़ते हैं, जो भाषा में अंतर्निहित जेंडर भेदभाव को दर्शाता है।</p>
+
+                        <p><b>3. बातचीत की शैलियों में जेंडर अंतर:</b></p>
+                        <div class="answer-rich-box">
+                            <h5>पुरुषों और महिलाओं के वार्तालाप में अंतर:</h5>
+                            <ul>
+                                <li><b>महिलाएं (सहयोगात्मक शैली):</b> महिलाएं सामाजिक संबंध बनाने, सहानुभूति व्यक्त करने और सहमति बनाने के लिए बोलती हैं। वे अक्सर अपनी बात के अंत में सहमति वाले प्रश्न (Tag Questions) जैसे: *"यह ठीक है ना?"* का उपयोग करती हैं।</li>
+                                <li><b>पुरुष (वर्चस्ववादी शैली):</b> पुरुषों की भाषा मुख्य रूप से सूचना देने, अधिकार प्रदर्शित करने और अपनी स्थिति स्थापित करने के लिए होती है। वे बातचीत के दौरान महिलाओं की तुलना में अधिक हस्तक्षेप (Interrupt) करते हैं।</li>
+                            </ul>
+                        </div>
+
+                        <p><b>4. निष्कर्ष:</b><br>
+                        अतः लैंगिक न्याय के लिए भाषा में जेंडर संवेदनशीलता (Gender Sensitivity in Language) लाना अत्यंत आवश्यक है।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3><span>Q6</span> Examine the Role and Portrayal of Gender in Media & Ads</h3>
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+                </div>
+                <div class="accordion-content">
+                    
+                    
+
+                    <div class="lang-tabs">
+                        <button class="lang-tab active" onclick="switchLang(this, 'q6-hinglish')">Hinglish</button>
+                        <button class="lang-tab" onclick="switchLang(this, 'q6-hindi')">Hindi (Exam Language)</button>
+                    </div>
+                    
+                    <div id="q6-hinglish" class="lang-content active answer-body">
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["Gender in Media"] --> B["Stereotyping in Ads"]
+                                A --> C["Objectification in Cinema"]
+                                A --> D["Male Gaze (Visual Perspective)"]
+                                B --> B1["Domestic products = Women <br> Cars & Finance = Men"]
+                                C --> C1["Item songs & Glamour tropes"]
+                                D --> D1["Camera represents male fantasy <br>- Laura Mulvey's Theory"]
+                        </div>
+                        <div class="flowchart-desc">Figure 6.1: Visual presentation of gender stereotyping in media.</div>
+                    </div>
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["Gender in Media"] --> B["Stereotyping in Ads"]
+                                A --> C["Objectification in Cinema"]
+                                A --> D["Male Gaze (Visual Perspective)"]
+                                B --> B1["Domestic products = Women <br> Cars & Finance = Men"]
+                                C --> C1["Item songs & Glamour tropes"]
+                                D --> D1["Camera represents male fantasy <br>- Laura Mulvey's Theory"]
+                        </div>
+                        <div class="flowchart-desc">Figure 6.1: Visual presentation of gender stereotyping in media.</div>
+                    </div>
+                        <p><b>1. Introduction:</b><br>
+                        Media (TV, Cinema, Advertising, Social Media) hamare modern society ka sabse bada aaina hai. Par ye aaina sach dikhane ke bajaye zyadatar gender stereotyping ko badhava deta hai. Media ke zariye hi society mein mardon aur auraton ki traditional image ko perpetuate kiya jata hai.</p>
+
+                        <p><b>2. Stereotyping in Advertisements:</b><br>
+                        Advertisements ka humare dimag par sabse tez asar padta hai. Ads mein humesha washing powder, detergent bars, tea, ya cleaning products ke ads mein aurat ko ek muskurati hui housewife ki tarah dikhaya jata hai. Wahin car, bike, mutual funds, aur business ke ads mein mardon ko suit-boot mein dikhaya jata hai. Ise **"Washing Powder Syndrome"** kehte hain, jo ye sandesh deta hai ki domestic chores auraton ka aur financial decisions mardon ka kaam hai.</p>
+
+                        <p><b>3. Objectification and the Male Gaze:</b></p>
+                        <div class="answer-rich-box">
+                            <h5>Core Media Theories:</h5>
+                            <ul>
+                                <li><b>Objectification (वस्तुकरण):</b> Indian cinema mein auraton ko zyadatar ek strong character ke roop mein pesh karne ke bajaye sirf item songs ya glamour quotient ke taur par pesh kiya jata hai, yani unhe ek 'Vastu' (object) bana diya jata hai.</li>
+                                <li><b>Male Gaze Theory (Laura Mulvey):</b> Feminist film theorist **Laura Mulvey** ne kaha ki movies mein camera ka angle aur projection humesha ek heterosexual male audience ke perspective se design kiya jata hai, jo female body ko voyeuristic tareeqe se objectify karta hai.</li>
+                            </ul>
+                        </div>
+
+                        <p><b>4. Solution / Way Forward:</b><br>
+                        ASCI (Advertising Standards Council of India) ko gender-biased ads par ban lagana chahiye. Media houses mein female directors, producers aur news directors ki sankhya badhani chahiye taaki story telling gender-sensitive ho sake.</p>
+
+                        <p><b>5. Conclusion:</b><br>
+                        Media ko humari soch badalne ke liye ek positive tool banna chahiye, na ki purani sadi-gali zender stereotypes ko bar-bar repeat karne ka madhyam.</p>
+                    </div>
+                    
+                    <div id="q6-hindi" class="lang-content answer-body">
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["मीडिया में जेंडर (Gender in Media)"] --> B["विज्ञापनों में रूढ़िवादिता (Stereotyping in Ads)"]
+                                A --> C["सिनेमा में वस्तुकरण (Objectification in Cinema)"]
+                                A --> D["मेल गेज़ सिद्धांत (Male Gaze - लौरा मुल्वे)"]
+                                B --> B1["घरेलू उत्पाद = महिलाएं <br> वाहन और वित्त = पुरुष"]
+                                C --> C1["आइटम नंबर और ग्लैमरस भूमिकाएं"]
+                                D --> D1["कैमरा दृष्टिकोण पुरुष कल्पना को दर्शाता है"]
+                        </div>
+                        <div class="flowchart-desc">चित्र 6.1: मीडिया में जेंडर रूढ़िवादिता का दृश्य प्रतिनिधित्व।</div>
+                    </div>
+                    <div class="flowchart-container">
+                        <div class="mermaid">
+                            graph TD
+                                A["मीडिया में जेंडर (Gender in Media)"] --> B["विज्ञापनों में रूढ़िवादिता (Stereotyping in Ads)"]
+                                A --> C["सिनेमा में वस्तुकरण (Objectification in Cinema)"]
+                                A --> D["मेल गेज़ सिद्धांत (Male Gaze - लौरा मुल्वे)"]
+                                B --> B1["घरेलू उत्पाद = महिलाएं <br> वाहन और वित्त = पुरुष"]
+                                C --> C1["आइटम नंबर और ग्लैमरस भूमिकाएं"]
+                                D --> D1["कैमरा दृष्टिकोण पुरुष कल्पना को दर्शाता है"]
+                        </div>
+                        <div class="flowchart-desc">चित्र 6.1: मीडिया में जेंडर रूढ़िवादिता का दृश्य प्रतिनिधित्व।</div>
+                    </div>
+                        <p><b>1. प्रस्तावना:</b><br>
+                        आधुनीक युग में मीडिया (टेलीविजन, विज्ञापन, सिनेमा और सोशल मीडिया) हमारी जेंडर धारणाओं को आकार देने का सबसे शक्तिशाली उपकरण है। दुर्भाग्य से, मीडिया अक्सर समाज में लैंगिक समानता को बढ़ावा देने के बजाय जेंडर रूढ़ियों (Gender Stereotypes) को और मजबूत करता है।</p>
+
+                        <p><b>2. विज्ञापनों में जेंडर रूढ़िवादिता:</b><br>
+                        विज्ञापनों का मानव मस्तिष्क पर गहरा मनोवैज्ञानिक प्रभाव पड़ता है। सर्फ, मसालों और बर्तनों के विज्ञापनों में सदैव महिलाओं को घर का काम करते दिखाया जाता है। दूसरी ओर, जीवन बीमा, ऑटोमोबाइल और वित्तीय निवेश के विज्ञापनों में पुरुषों को दिखाया जाता है। यह जेंडर रूढ़िवादिता संदेश देती है कि घरेलू कार्य केवल महिलाओं की और आर्थिक निर्णय पुरुषों की जिम्मेदारी है।</p>
+
+                        <p><b>3. वस्तुकरण और मेल गेज़ सिद्धांत (Male Gaze):</b></p>
+                        <div class="answer-rich-box">
+                            <h5>सिनेमा और टीवी के प्रमुख आयाम:</h5>
+                            <ul>
+                                <li><b>वस्तुकरण (Objectification):</b> लोकप्रिय सिनेमा में महिलाओं को मुख्य स्वतंत्र किरदारों के बजाय अक्सर मात्र 'आइटम नंबरों' या शारीरिक रूप से आकर्षक वस्तुओं के रूप में प्रस्तुत किया जाता है।</li>
+                                <li><b>मेल गेज़ सिद्धांत (Laura Mulvey):</b> फिल्म सिद्धांतकार <b>लौरा मुल्वे</b> के अनुसार, सिनेमा में कैमरा का दृष्टिकोण हमेशा काल्पनिक पुरुष दर्शकों की कामुक और सुखवादी दृष्टि से काम करता है, जो महिलाओं के चरित्र को केवल उपभोग की वस्तु बनाता है।</li>
+                            </ul>
+                        </div>
+
+                        <p><b>4. निष्कर्ष:</b><br>
+                        मीडिया को जेंडर संवेदनशील पत्रकारिता और विज्ञापन मानकों (ASCI) का कड़ाई से पालन करना चाहिए ताकि समाज में सकारात्मक और समतावादी जेंडर भूमिकाओं का प्रसार हो सके।</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- PAGE 3: REVISION DECK -->
+        <section id="revision" class="page">
+            <h1 class="page-title">📚 Revision Deck</h1>
+            <p class="page-subtitle">Quick bullet summaries of other VIP textbook concepts</p>
+
+            <div class="glass-card">
+                <h2>👑 Feminist Theories (नारीवाद)</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 16px;">
+                    <div style="padding: 16px; background-color: var(--bg-accent); border-radius: var(--radius-sm);">
+                        <h4 style="font-family: var(--font-display); font-weight: 700; color: var(--primary); margin-bottom: 8px;">Liberal Feminism</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">Equal rights aur legal/educational reforms chahte hain. System ke andar law change karke equality lana inka main goal hai.</p>
+                    </div>
+                    <div style="padding: 16px; background-color: var(--bg-accent); border-radius: var(--radius-sm);">
+                        <h4 style="font-family: var(--font-display); font-weight: 700; color: var(--accent); margin-bottom: 8px;">Radical Feminism</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">Patriarchy aur family hierarchy ko jad se khatam karna chahte hain. Body autonomy aur bodily rights par focus karte hain.</p>
+                    </div>
+                    <div style="padding: 16px; background-color: var(--bg-accent); border-radius: var(--radius-sm);">
+                        <h4 style="font-family: var(--font-display); font-weight: 700; color: var(--success); margin-bottom: 8px;">Marxist Feminism</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">Saari problem ki jad Capitalism hai. Unpaid domestic labor ko capitalism use karta hai. Capitalism end hoga toh gender gap end hoga.</p>
+                    </div>
+                    <div style="padding: 16px; background-color: var(--bg-accent); border-radius: var(--radius-sm);">
+                        <h4 style="font-family: var(--font-display); font-weight: 700; color: var(--warning); margin-bottom: 8px;">Socialist Feminism</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.4;">Marxist aur Radical dono ka mix. Oppression ke peeche "Capitalist Patriarchy" (gathbandhan) ka hath hai, ise todna padega.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2>🩺 Reproductive Health & Rights</h2>
+                <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+                    <p><b>Reproductive Rights:</b> Har aurat ka physical right ki use kab aur kiske sath pregnancy/child birth plan karni hai, safe contraception aur abortion access rights.</p>
+                    <p><b>Key Indicators:</b></p>
+                    <ul style="margin-left: 20px; font-size: 0.95rem; color: var(--text-secondary);">
+                        <li><b>MMR (Maternal Mortality Ratio):</b> Delivery ke waqt kitni mothers ki death hoti hai per 1 lakh births.</li>
+                        <li><b>TFR (Total Fertility Rate):</b> Ek female average kitne bache paida karti hai apni active life mein.</li>
+                        <li><b>CPR (Contraceptive Prevalence Rate):</b> Kitne couples family planning/contraceptive methods use kar rahe hain.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2>📖 Close Reading & Visualising</h2>
+                <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+                    <p><b>Close Reading (गूढ़ पठन):</b> Kisi textbook ya literature passage ko simple read karne ke bajaye, uske words aur symbols ke peeche chupe gender roles aur power dynamics ko analyze karna.</p>
+                    <p><b>Visualising (दृश्यीकरण):</b> Paintings, prints ya paintings/images ke jariye unke andruni jender stereotyping ko explore karna.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: SELF TEST QUIZ -->
+        <section id="selftest" class="page">
+            <h1 class="page-title">✍️ Self Test Quiz</h1>
+            <p class="page-subtitle">Check your conceptual understanding before step in to the exam hall</p>
+
+            <!-- Quiz 1 -->
+            <div class="quiz-card">
+                <div class="quiz-question">Q1. "One is not born, but rather becomes a woman." Ye famous statement kis feminist thinker ka hai?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="checkAnswer(this, false, 'q1')">R.W. Connell</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, true, 'q1')">Simone de Beauvoir</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false, 'q1')">Laura Mulvey</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false, 'q1')">Bhanwari Devi</button>
+                </div>
+                <div id="q1-feedback" class="quiz-feedback"></div>
+            </div>
+
+            <!-- Quiz 2 -->
+            <div class="quiz-card">
+                <div class="quiz-question">Q2. Workplaces par female harassment safety ke liye POSH Act kis year mein pass kiya gaya tha?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="checkAnswer(this, false, 'q2')">2005</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false, 'q2')">2010</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, true, 'q2')">2013</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false, 'q2')">2016</button>
+                </div>
+                <div id="q2-feedback" class="quiz-feedback"></div>
+            </div>
+
+            <!-- Quiz 3 -->
+            <div class="quiz-card">
+                <div class="quiz-question">Q3. "Sex" aur "Gender" mein basic difference kya hai?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="checkAnswer(this, false, 'q3')">Dono bilkul same aur biological hote hain.</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, true, 'q3')">Sex biological hai aur Gender society dwara built hai.</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false, 'q3')">Sex society dwara built hai aur Gender biological hai.</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false, 'q3')">Dono dynamics badalte rehte hain.</button>
+                </div>
+                <div id="q3-feedback" class="quiz-feedback"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Tab switching logic for sidebar
+        const navItems = document.querySelectorAll('.nav-item');
+        const pages = document.querySelectorAll('.page');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = item.getAttribute('data-target');
+                
+                navItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                
+                pages.forEach(p => p.classList.remove('active'));
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        // Question accordions toggle
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const parent = header.parentElement;
+                parent.classList.toggle('active');
+                
+                // Re-render mermaid inside opened accordion to avoid scaling bugs
+                if(parent.classList.contains('active')) {
+                    setTimeout(() => {
+                        mermaid.init(undefined, parent.querySelectorAll('.mermaid'));
+                    }, 50);
+                }
+            });
+        });
+
+        // Language toggle inside questions
+        function switchLang(btn, targetId) {
+            const tabsContainer = btn.parentElement;
+            const contentContainer = tabsContainer.nextElementSibling.parentElement;
+            
+            // Switch tabs
+            tabsContainer.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Switch contents
+            contentContainer.querySelectorAll('.lang-content').forEach(c => c.classList.remove('active'));
+            const targetContent = contentContainer.querySelector(`#${targetId}`);
+            targetContent.classList.add('active');
+            
+            // Re-render mermaid inside the newly opened language tab
+            setTimeout(() => {
+                mermaid.init(undefined, targetContent.querySelectorAll('.mermaid'));
+            }, 50);
+        }
+
+        // Quiz checking
+        function checkAnswer(btn, isCorrect, questionId) {
+            const container = btn.parentElement;
+            const options = container.querySelectorAll('.quiz-option');
+            const feedback = document.getElementById(`${questionId}-feedback`);
+            
+            // Lock options
+            options.forEach(opt => opt.disabled = true);
+            
+            if (isCorrect) {
+                btn.classList.add('correct');
+                feedback.innerHTML = "<span style='color: var(--success);'><i class='fa-solid fa-circle-check'></i> Bilkul Sahi Jawab! Keep it up!</span>";
+            } else {
+                btn.classList.add('incorrect');
+                // Find correct option to highlight
+                options.forEach(opt => {
+                    if (opt.innerText.includes('Simone') || opt.innerText.includes('2013') || opt.innerText.includes('Sex biological')) {
+                        opt.classList.add('correct');
+                    }
+                });
+                feedback.innerHTML = "<span style='color: var(--danger);'><i class='fa-solid fa-circle-xmark'></i> Oops! Galat jawab. Correct answer highlight kar diya hai.</span>";
+            }
+            feedback.style.display = "block";
+        }
+
+        // Search Filter
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            
+            // Search inside questions page accordions
+            const accordions = document.querySelectorAll('.accordion-item');
+            accordions.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        });
+
+        // Theme Toggle (Light / Dark)
+        const themeBtn = document.getElementById('themeBtn');
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+        });
+    </script>
+</body>
+</html>
